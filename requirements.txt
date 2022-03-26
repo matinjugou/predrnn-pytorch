@@ -1,4 +1,3 @@
 opencv-python
 lpips
 scikit-image
-tensorflow

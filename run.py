@@ -15,34 +15,34 @@ parser = argparse.ArgumentParser(description='PyTorch video prediction model - P
 
 # training/test
 parser.add_argument('--is_training', type=int, default=1)
-parser.add_argument('--device', type=str, default='cpu:0')
+parser.add_argument('--device', type=str, default='cuda:0')
 
 # data
-parser.add_argument('--dataset_name', type=str, default='mnist')
+parser.add_argument('--dataset_name', type=str, default='action')
 parser.add_argument('--train_data_paths', type=str, default='data/moving-mnist-example/moving-mnist-train.npz')
 parser.add_argument('--valid_data_paths', type=str, default='data/moving-mnist-example/moving-mnist-valid.npz')
-parser.add_argument('--save_dir', type=str, default='checkpoints/mnist_predrnn')
+parser.add_argument('--save_dir', type=str, default='results/checkpoints/mnist_predrnn')
 parser.add_argument('--gen_frm_dir', type=str, default='results/mnist_predrnn')
 parser.add_argument('--input_length', type=int, default=10)
 parser.add_argument('--total_length', type=int, default=20)
-parser.add_argument('--img_width', type=int, default=64)
+parser.add_argument('--img_width', type=int, default=128)
 parser.add_argument('--img_channel', type=int, default=1)
 
 # model
-parser.add_argument('--model_name', type=str, default='predrnn')
+parser.add_argument('--model_name', type=str, default='predrnn_v2')
 parser.add_argument('--pretrained_model', type=str, default='')
-parser.add_argument('--num_hidden', type=str, default='64,64,64,64')
+parser.add_argument('--num_hidden', type=str, default='128,128,128,128')
 parser.add_argument('--filter_size', type=int, default=5)
 parser.add_argument('--stride', type=int, default=1)
 parser.add_argument('--patch_size', type=int, default=4)
-parser.add_argument('--layer_norm', type=int, default=1)
-parser.add_argument('--decouple_beta', type=float, default=0.1)
+parser.add_argument('--layer_norm', type=int, default=0)
+parser.add_argument('--decouple_beta', type=float, default=0.01)
 
 # reverse scheduled sampling
-parser.add_argument('--reverse_scheduled_sampling', type=int, default=0)
-parser.add_argument('--r_sampling_step_1', type=float, default=25000)
+parser.add_argument('--reverse_scheduled_sampling', type=int, default=1)
+parser.add_argument('--r_sampling_step_1', type=float, default=5000)
 parser.add_argument('--r_sampling_step_2', type=int, default=50000)
-parser.add_argument('--r_exp_alpha', type=int, default=5000)
+parser.add_argument('--r_exp_alpha', type=int, default=2000)
 # scheduled sampling
 parser.add_argument('--scheduled_sampling', type=int, default=1)
 parser.add_argument('--sampling_stop_iter', type=int, default=50000)
@@ -50,9 +50,9 @@ parser.add_argument('--sampling_start_value', type=float, default=1.0)
 parser.add_argument('--sampling_changing_rate', type=float, default=0.00002)
 
 # optimization
-parser.add_argument('--lr', type=float, default=0.001)
+parser.add_argument('--lr', type=float, default=0.0001)
 parser.add_argument('--reverse_input', type=int, default=1)
-parser.add_argument('--batch_size', type=int, default=8)
+parser.add_argument('--batch_size', type=int, default=4)
 parser.add_argument('--max_iterations', type=int, default=80000)
 parser.add_argument('--display_interval', type=int, default=100)
 parser.add_argument('--test_interval', type=int, default=5000)
